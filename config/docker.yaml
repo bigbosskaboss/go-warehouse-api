@@ -1,0 +1,6 @@
+env: "prod"
+database_url: "user=gchkabisov password=123 host=db port=5432 dbname=WareHouse"
+http_server:
+  address: "0.0.0.0:8080"
+  timeout: 4s
+  idle_timeout: 60s

@@ -1,0 +1,689 @@
+{
+	"info": {
+		"_postman_id": "8e537c00-ac0b-4817-8d86-d5c1e4e251a1",
+		"name": "warehouse api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "26714692"
+	},
+	"item": [
+		{
+			"name": "reserve",
+			"item": [
+				{
+					"name": "normal requests",
+					"item": [
+						{
+							"name": "one item + amount",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"warehouse_id\": 2,\n        \"cart\": [\n            {\"unique_code\": 1, \"amount\": 3}\n           \n        ]\n    }\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/reserve",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"reserve"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "one item without amount",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"warehouse_id\": 2,\n        \"cart\": [\n            {\"unique_code\": 1}\n           \n        ]\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/reserve",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"reserve"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "sevaral items all with amount",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"warehouse_id\": 4,\n        \"cart\": [\n            {\"unique_code\": 1, \"amount\": 2},\n            {\"unique_code\": 4, \"amount\": 5},\n            {\"unique_code\": 5, \"amount\": 3}\n           \n        ]\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/reserve",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"reserve"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "several items all without amount",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"warehouse_id\": 4,\n        \"cart\": [\n           {\"unique_code\": 1},\n           {\"unique_code\": 5}\n           \n        ]\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/reserve",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"reserve"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "several items, several without amount",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"warehouse_id\": 4,\n        \"cart\": [\n            {\"unique_code\": 4, \"amount\": 3},\n            {\"unique_code\": 1}\n           \n        ]\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/reserve",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"reserve"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "error requests",
+					"item": [
+						{
+							"name": "no items",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"warehouse_id\": 2,\n        \"cart\": [\n           \n        ]\n    }\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/reserve",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"reserve"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "no warehouse",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"cart\": [\n           {\"unique_code\": 1, \"amount\": 20}\n        ]\n    }\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/reserve",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"reserve"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "invalid wh id",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"warehouse_id\": ananama,\n        \"cart\": [\n           {\"unique_code\": 1, \"amount\": 20}\n        ]\n    }\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/reserve",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"reserve"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "no such wh",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"warehouse_id\": 2000,\n        \"cart\": [\n           {\"unique_code\": 1, \"amount\": 20}\n        ]\n    }\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/reserve",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"reserve"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "wh is closed",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"warehouse_id\": 5,\n        \"cart\": [\n           {\"unique_code\": 1, \"amount\": 20}\n        ]\n    }\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/reserve",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"reserve"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "one item not exists",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"warehouse_id\": 1,\n        \"cart\": [\n           {\"unique_code\": 100, \"amount\": 20}\n        ]\n    }\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/reserve",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"reserve"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "several items, some not exists",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"warehouse_id\": 5,\n        \"cart\": [\n           {\"unique_code\": 1, \"amount\": 20}\n        ]\n    }\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/reserve",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"reserve"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "required amount less then stock",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"warehouse_id\": 1,\n        \"cart\": [\n           {\"unique_code\": 1, \"amount\": 20}\n        ]\n    }\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/reserve",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"reserve"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "required amount less then stock for some items",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"warehouse_id\": 1,\n        \"cart\": [\n           {\"unique_code\": 3, \"amount\": 5},\n           {\"unique_code\": 2}\n        ]\n    }\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/reserve",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"reserve"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "invalid body params",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"warehouse_id\": 1,\n        \"cart\": [\n           {\"uniqueeeeee\": 3, \"amount\": 5},\n           {\"unique_code\": 2}\n        ]\n    }\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/reserve",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"reserve"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "empty body",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    }\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/reserve",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"reserve"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "release",
+			"item": [
+				{
+					"name": "normal requests",
+					"item": [
+						{
+							"name": "item + amount",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"warehouse_id\": 2,\n        \"cart\": [\n            {\"unique_code\": 3, \"amount\": 3}\n           \n        ]\n    }\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/release",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"release"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "item without amount",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"warehouse_id\": 2,\n        \"cart\": [\n            {\"unique_code\": 1}\n           \n        ]\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/release",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"release"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "sevaral items some with amount",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"warehouse_id\": 4,\n        \"cart\": [\n            {\"unique_code\": 1, \"amount\": 2},\n            {\"unique_code\": 4},\n            {\"unique_code\": 5, \"amount\": 3}\n           \n        ]\n    }",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/release",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"release"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "error requests",
+					"item": [
+						{
+							"name": "required amount less then released",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"warehouse_id\": 1,\n        \"cart\": [\n           {\"unique_code\": 3, \"amount\": 80}\n        ]\n    }\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/release",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"release"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "several items, some not exists",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n        \"warehouse_id\": 2,\n        \"cart\": [\n           {\"unique_code\": 2, \"amount\": 2},\n           {\"unique_code\": 1494994}\n        ]\n    }\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8080/release",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"release"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "stock",
+			"item": [
+				{
+					"name": "closed wh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"warehouse_id\": 5\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/stock",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"stock"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "open wh",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n        \"warehouse_id\": 2\n    }",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/stock",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"stock"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

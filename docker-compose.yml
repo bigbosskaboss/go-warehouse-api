@@ -1,0 +1,38 @@
+version: '4.18'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    volumes:
+      - ./config/docker.yaml:/config/docker.yaml
+    depends_on:
+      - db
+  db:
+    image: postgres:latest
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=gchkabisov
+      - POSTGRES_DB=WareHouse
+      - POSTGRES_PASSWORD=123
+      - POSTGRES_MAX_CONNECTIONS=1000
+    volumes:
+      - db-data:/var/lib/postgresql/data
+  migrate:
+    image: migrate/migrate
+    volumes:
+      - ./migrations/migrations:/migrations
+    command:
+      - -path=/migrations
+      - -database=postgres://gchkabisov:123@db:5432/WareHouse?sslmode=disable
+      - up
+    depends_on:
+      - db
+
+volumes:
+  db-data:
+

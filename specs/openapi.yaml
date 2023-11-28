@@ -1,0 +1,76 @@
+openapi: 3.0.0
+info:
+  title: "Warehouse API"
+  version: "1.0.0"
+paths:
+  /reserve:
+    post:
+      summary: "Reserve items"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                warehouse_id:
+                  type: integer
+                cart:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      unique_code:
+                        type: integer
+                      amount:
+                        type: integer
+                  minItems: 1
+      responses:
+        "200":
+          description: "Items reserved successfully"
+        "400":
+          description: "Bad request"
+  /release:
+    post:
+      summary: "Release reserved items"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                warehouse_id:
+                  type: integer
+                cart:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      unique_code:
+                        type: integer
+                      amount:
+                        type: integer
+                  minItems: 1
+      responses:
+        "200":
+          description: "Items released successfully"
+        "400":
+          description: "Bad request"
+  /stock:
+    post:
+      summary: "Check stock status"
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                warehouse_id:
+                  type: integer
+      responses:
+        "200":
+          description: "Stock status retrieved successfully"
+        "400":
+          description: "Bad request"
